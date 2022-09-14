@@ -21,5 +21,12 @@ public class PasswordHandler {
 		System.out.println("isPasswordMatched----->" + isPasswordMatched);
 		return isPasswordMatched;
 	}
+	  public boolean passwordvalidation(String psd) {
+
+	      String pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}";
+	      System.out.println(psd.matches(pattern));
+		return psd.matches(pattern);
+	   
+	}
 }
 
