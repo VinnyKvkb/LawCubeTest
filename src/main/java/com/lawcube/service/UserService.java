@@ -36,8 +36,13 @@ public class UserService {
 
 	public ResponseEntity<Object> register(User user) {
 		User res = new User();
-		;
+		
 		try {
+			boolean isValid=passwordHandler.passwordvalidation(user.getPassword());
+			System.out.println("passwordvalidation-->"+isValid);
+			if(!isValid) {
+				return new ResponseEntity<Object>("Please Enter a  Valid 8 Digit Password with at least 1 number,1 lower case letter, 1 upper case letter and 1 special character", HttpStatus.BAD_REQUEST);
+			}
 			user.setPassword(passwordHandler.encryptPassword(user.getPassword()));
 			res = userRepo.save(user);
 		} catch (Exception e) {
