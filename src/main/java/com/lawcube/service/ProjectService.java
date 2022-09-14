@@ -21,10 +21,13 @@ public class ProjectService {
 	@Autowired
 	UserRepo userRepo;
 
-	public ResponseEntity<Object> createProject(Project project, Integer userId) {
+	public ResponseEntity<Object> createProject(Project project) {
 		Project res = new Project();
 		try {
-			project.setUserId(userId);
+			String email = CurrentRequestData.getCurrentUser();
+			System.out.println("getCurrentUser-->" + email);
+			User user = userRepo.findByEmail(email);
+			project.setUserId(user.getId());
 			res = projectRepo.save(project);
 
 		} catch (Exception e) {

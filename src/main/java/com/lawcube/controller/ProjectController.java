@@ -20,10 +20,10 @@ public class ProjectController {
 	@Autowired
 	ProjectService projectService;
 	
-	@RequestMapping(value = "/createProject/{userId}", method = RequestMethod.POST,consumes = "application/json")
-	public ResponseEntity<Object> createProject(@RequestBody Project project,@PathVariable Integer userId) {
+	@RequestMapping(value = "/createProject", method = RequestMethod.POST,consumes = "application/json")
+	public ResponseEntity<Object> createProject(@RequestBody Project project) {
 		log.info("==============createProject==========");
-		ResponseEntity<Object> resEntity = projectService.createProject(project,userId);
+		ResponseEntity<Object> resEntity = projectService.createProject(project);
 		return resEntity;
 	}
 	@RequestMapping(value = "/updateProject", method = RequestMethod.PUT,consumes = "application/json")
